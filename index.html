@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santi's Pizza — Menú</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,400&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --gold: #C8A050;
+  --orange: #E07030;
+  --cream: #F5EDDB;
+  --bg: #0f0b08;
+  --bg2: #100b06;
+}
+html, body { min-height: 100%; background: #0d0d0d; }
+body {
+  display: flex;
+  justify-content: center;
+  padding: 32px 12px 48px;
+  font-family: 'DM Sans', sans-serif;
+}
+.menu {
+  width: 100%;
+  max-width: 720px;
+  background: var(--bg);
+  border-radius: 8px;
+  border: 1.5px solid rgba(200,160,80,0.22);
+  overflow: hidden;
+  animation: rise 0.8s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--bg2);
+  padding: 40px 24px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(200,80,20,0.18), transparent 70%);
+  pointer-events: none;
+}
+.top-rule {
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 0 auto 28px;
+}
+
+/* Pizza flotante */
+.pizza-wrap {
+  margin: 0 auto 24px;
+  width: 140px;
+  height: 140px;
+  filter: drop-shadow(0 8px 20px rgba(200,80,20,0.5));
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+.pizza-wrap svg {
+  animation: floatPizza 4s ease-in-out infinite;
+  display: block;
+}
+@keyframes floatPizza {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-12px) rotate(3deg); }
+}
+.pizza-wrap.spin svg {
+  animation: spinonce 0.65s cubic-bezier(.36,.07,.19,.97) forwards;
+}
+@keyframes spinonce {
+  0%   { transform: rotate(0deg) scale(1); }
+  40%  { transform: rotate(200deg) scale(1.14); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Nombre flotante con CSS puro */
+.brand-sub {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  letter-spacing: 8px;
+  color: var(--gold);
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 10px;
+  animation: floatText 5s ease-in-out infinite;
+}
+.brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 0.9;
+  color: var(--cream);
+  letter-spacing: -1px;
+  text-shadow: 0 0 40px rgba(200,160,80,0.2), 0 4px 0 rgba(160,40,10,0.55);
+  display: block;
+  animation: floatText 5s ease-in-out infinite;
+}
+.brand-name em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--orange);
+  display: block;
+  animation: floatText 5s ease-in-out infinite 0.3s;
+}
+@keyframes floatText {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+  position: relative;
+  z-index: 1;
+}
+.orn-line {
+  flex: 1; max-width: 120px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+.orn-line.r { background: linear-gradient(to left, transparent, var(--gold)); }
+.orn-diamond {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+/* ── SIZES ── */
+.sizes-section {
+  background: #111;
+  padding: 28px 16px 32px;
+  border-bottom: 1px solid rgba(200,160,80,0.12);
+}
+.sizes-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: white;
+  text-align: center;
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+.sizes-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.size-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease;
+  user-select: none;
+}
+.size-btn:active { transform: scale(0.93); }
+
+/* Ícono SVG */
+.size-icon { transition: filter 0.2s; }
+.size-btn.sel .size-icon {
+  filter: drop-shadow(0 0 8px rgba(200,160,80,0.6));
+}
+.size-btn.sel .size-icon .pizza-ring { stroke: var(--gold); }
+.size-btn.sel .size-icon .pizza-slice { stroke: var(--gold); fill: rgba(200,160,80,0.15); }
+.size-btn.sel .size-icon .slice-num { fill: var(--gold); }
+
+.size-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.size-price-pill {
+  background: white;
+  color: #111;
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 999px;
+}
+.size-btn.sel .size-price-pill {
+  background: var(--gold);
+  color: #111;
+}
+
+/* ── SECTION HEADER ── */
+.section-header {
+  background: var(--gold);
+  padding: 10px 0;
+  text-align: center;
+}
+.section-header span {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  letter-spacing: 9px;
+  color: #0f0b06;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* ── PIZZA GRID ── */
+.pizzas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 4px 10px 24px;
+}
+@media (max-width: 480px) {
+  .pizzas-grid { grid-template-columns: 1fr; }
+  .pizza-item { border-right: none !important; }
+  .brand-name { font-size: 52px; }
+  .sizes-title { font-size: 14px; }
+  .sizes-row { gap: 8px; }
+}
+.pizza-item {
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.pizza-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.04); }
+.pizza-item::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 3px; height: 100%;
+  background: var(--orange);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.2s ease;
+}
+.pizza-item.active::after { transform: scaleY(1); }
+.pizza-item.active { background: rgba(200,160,80,0.07); }
+.pizza-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--cream);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pizza-name::before {
+  content: '';
+  width: 18px; height: 2px;
+  background: var(--orange);
+  flex-shrink: 0;
+  border-radius: 2px;
+  transition: width 0.2s;
+}
+.pizza-item.active .pizza-name::before { width: 26px; }
+.pizza-ingredients {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.72;
+  padding-left: 28px;
+  line-height: 1.6;
+}
+
+/* ── FOOTER ── */
+.menu-footer {
+  padding: 20px 40px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-top: 1px solid rgba(200,160,80,0.12);
+}
+.foot-line { flex: 1; max-width: 90px; height: 1px; background: rgba(200,160,80,0.2); }
+.foot-dot { width: 5px; height: 5px; background: var(--orange); border-radius: 50%; opacity: 0.55; }
+.foot-icon { font-size: 20px; opacity: 0.55; animation: floatPizza 3s ease-in-out infinite; }
+</style>
+</head>
+<body>
+<div class="menu">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="top-rule"></div>
+    <div class="pizza-wrap" id="pizzaWrap">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="140" height="140">
+        <ellipse cx="100" cy="195" rx="58" ry="6" fill="rgba(0,0,0,0.3)"/>
+        <circle cx="100" cy="100" r="92" fill="#D4933A"/>
+        <circle cx="100" cy="100" r="92" fill="none" stroke="#C47B20" stroke-width="14"/>
+        <circle cx="100" cy="100" r="78" fill="#B33A1A"/>
+        <circle cx="100" cy="100" r="74" fill="#E8C060" opacity="0.85"/>
+        <ellipse cx="80" cy="85" rx="18" ry="12" fill="#F0D070" opacity="0.7" transform="rotate(-20 80 85)"/>
+        <ellipse cx="120" cy="110" rx="16" ry="10" fill="#F0D070" opacity="0.6" transform="rotate(15 120 110)"/>
+        <ellipse cx="95" cy="125" rx="14" ry="9" fill="#F0D070" opacity="0.65" transform="rotate(-10 95 125)"/>
+        <circle cx="90" cy="80" r="10" fill="#8B1A00"/>
+        <circle cx="115" cy="95" r="9" fill="#8B1A00"/>
+        <circle cx="82" cy="112" r="9" fill="#8B1A00"/>
+        <circle cx="110" cy="120" r="8" fill="#8B1A00"/>
+        <circle cx="108" cy="75" r="7" fill="#8B1A00"/>
+        <ellipse cx="70" cy="98" rx="8" ry="5" fill="#A0784A"/>
+        <rect x="67" y="98" width="6" height="5" rx="1" fill="#C09060"/>
+        <ellipse cx="130" cy="85" rx="7" ry="4.5" fill="#A0784A"/>
+        <rect x="127" y="85" width="6" height="5" rx="1" fill="#C09060"/>
+        <circle cx="100" cy="100" r="5" fill="#2D4A1E"/>
+        <circle cx="100" cy="100" r="2" fill="#C8A050"/>
+        <line x1="100" y1="8" x2="100" y2="192" stroke="rgba(180,90,20,0.25)" stroke-width="1.5"/>
+        <line x1="8" y1="100" x2="192" y2="100" stroke="rgba(180,90,20,0.25)" stroke-width="1.5"/>
+        <line x1="35" y1="35" x2="165" y2="165" stroke="rgba(180,90,20,0.25)" stroke-width="1.5"/>
+        <line x1="165" y1="35" x2="35" y2="165" stroke="rgba(180,90,20,0.25)" stroke-width="1.5"/>
+        <ellipse cx="75" cy="65" rx="28" ry="18" fill="rgba(255,255,255,0.07)" transform="rotate(-30 75 65)"/>
+      </svg>
+    </div>
+    <p class="brand-sub">Pizzería</p>
+    <span class="brand-name">Santi's<em>Pizza</em></span>
+    <div class="ornament">
+      <div class="orn-line"></div>
+      <div class="orn-diamond"></div>
+      <div class="orn-line r"></div>
+    </div>
+  </div>
+
+  <!-- TAMAÑOS -->
+  <div class="sizes-section">
+    <div class="sizes-title">Elige el tamaño de tu preferencia</div>
+    <div class="sizes-row">
+
+      <!-- Personal: solo círculo + triángulo, sin número -->
+      <div class="size-btn" onclick="selectSize(this)">
+        <div class="size-icon">
+          <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle class="pizza-ring" cx="32" cy="32" r="28" fill="none" stroke="white" stroke-width="2.5"/>
+            <polygon class="pizza-slice" points="32,32 20,10 44,10" fill="rgba(255,255,255,0.12)" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="size-label">Personal</div>
+        <div class="size-price-pill">$10.000</div>
+      </div>
+
+      <!-- Mediana: 6 -->
+      <div class="size-btn" onclick="selectSize(this)">
+        <div class="size-icon">
+          <svg width="74" height="74" viewBox="0 0 74 74" xmlns="http://www.w3.org/2000/svg">
+            <circle class="pizza-ring" cx="37" cy="37" r="32" fill="none" stroke="white" stroke-width="2.5"/>
+            <polygon class="pizza-slice" points="37,37 23,10 51,10" fill="rgba(255,255,255,0.12)" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+            <text class="slice-num" x="37" y="24" text-anchor="middle" font-family="Oswald,sans-serif" font-size="11" font-weight="700" fill="white">6</text>
+          </svg>
+        </div>
+        <div class="size-label">Mediana</div>
+        <div class="size-price-pill">$22.000</div>
+      </div>
+
+      <!-- Grande: 8 (preseleccionado) -->
+      <div class="size-btn sel" onclick="selectSize(this)">
+        <div class="size-icon">
+          <svg width="86" height="86" viewBox="0 0 86 86" xmlns="http://www.w3.org/2000/svg">
+            <circle class="pizza-ring" cx="43" cy="43" r="37" fill="none" stroke="#C8A050" stroke-width="2.5"/>
+            <polygon class="pizza-slice" points="43,43 27,12 59,12" fill="rgba(200,160,80,0.18)" stroke="#C8A050" stroke-width="2" stroke-linejoin="round"/>
+            <text class="slice-num" x="43" y="28" text-anchor="middle" font-family="Oswald,sans-serif" font-size="13" font-weight="700" fill="#C8A050">8</text>
+          </svg>
+        </div>
+        <div class="size-label">Grande</div>
+        <div class="size-price-pill">$28.000</div>
+      </div>
+
+      <!-- Familiar: 10 -->
+      <div class="size-btn" onclick="selectSize(this)">
+        <div class="size-icon">
+          <svg width="98" height="98" viewBox="0 0 98 98" xmlns="http://www.w3.org/2000/svg">
+            <circle class="pizza-ring" cx="49" cy="49" r="43" fill="none" stroke="white" stroke-width="2.5"/>
+            <polygon class="pizza-slice" points="49,49 31,12 67,12" fill="rgba(255,255,255,0.12)" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+            <text class="slice-num" x="49" y="30" text-anchor="middle" font-family="Oswald,sans-serif" font-size="14" font-weight="700" fill="white">10</text>
+          </svg>
+        </div>
+        <div class="size-label">Familiar</div>
+        <div class="size-price-pill">$35.000</div>
+      </div>
+
+      <!-- Jumbo: 12 -->
+      <div class="size-btn" onclick="selectSize(this)">
+        <div class="size-icon">
+          <svg width="110" height="110" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+            <circle class="pizza-ring" cx="55" cy="55" r="49" fill="none" stroke="white" stroke-width="2.5"/>
+            <polygon class="pizza-slice" points="55,55 35,12 75,12" fill="rgba(255,255,255,0.12)" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+            <text class="slice-num" x="55" y="32" text-anchor="middle" font-family="Oswald,sans-serif" font-size="15" font-weight="700" fill="white">12</text>
+          </svg>
+        </div>
+        <div class="size-label">Jumbo</div>
+        <div class="size-price-pill">$42.000</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ESPECIALIDADES -->
+  <div class="section-header"><span>Especialidades</span></div>
+
+  <div class="pizzas-grid">
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Hawaiana</div>
+      <div class="pizza-ingredients">Queso · Jamón · Piña</div>
+    </div>
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Campesina</div>
+      <div class="pizza-ingredients">Queso · Jitomate · Champiñones · Pimiento · Cebolla</div>
+    </div>
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Carnes Frías</div>
+      <div class="pizza-ingredients">Queso · Jamón · Salchicha · Tocino · Chorizo</div>
+    </div>
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Máxima</div>
+      <div class="pizza-ingredients">Queso · Jamón · Pepperoni · Chorizo · Salchicha · Pimiento · Cebolla</div>
+    </div>
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Mexicana</div>
+      <div class="pizza-ingredients">Queso · Tocino · Chorizo · Jalapeño</div>
+    </div>
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Veracruzana</div>
+      <div class="pizza-ingredients">Queso · Atún · Pimiento · Cebolla</div>
+    </div>
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Pepperoni</div>
+      <div class="pizza-ingredients">Queso · Pepperoni</div>
+    </div>
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Festiva</div>
+      <div class="pizza-ingredients">Queso · Pepperoni · Champiñones · Salchicha · Cebolla · Aceitunas · Pimiento</div>
+    </div>
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Al Pastor</div>
+      <div class="pizza-ingredients">Queso · Carne al Pastor · Piña</div>
+    </div>
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Vegetariana</div>
+      <div class="pizza-ingredients">Queso · Champiñones · Piña · Pimiento · Aceitunas</div>
+    </div>
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Texas</div>
+      <div class="pizza-ingredients">Queso · Salchicha · Tocino · Jalapeño · Cebolla</div>
+    </div>
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Ranchera</div>
+      <div class="pizza-ingredients">Queso · Frijoles · Chorizo · Jalapeño</div>
+    </div>
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Azteca</div>
+      <div class="pizza-ingredients">Queso · Tocino · Chorizo · Jalapeño · Aguacate</div>
+    </div>
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Super Especial</div>
+      <div class="pizza-ingredients">Queso · Pepperoni · Tocino · Champiñones · Pimiento · Cebolla</div>
+    </div>
+    <div class="pizza-item" onclick="toggleActive(this)">
+      <div class="pizza-name">Griega</div>
+      <div class="pizza-ingredients">Queso · Jamón · Aceitunas · Pimiento · Cebolla</div>
+    </div>
+  </div>
+
+  <div class="menu-footer">
+    <div class="foot-line"></div>
+    <div class="foot-dot"></div>
+    <div class="foot-icon">🍕</div>
+    <div class="foot-dot"></div>
+    <div class="foot-line"></div>
+  </div>
+</div>
+
+<script>
+  function selectSize(btn) {
+    document.querySelectorAll('.size-btn').forEach(function(b) {
+      b.classList.remove('sel');
+      b.querySelector('.pizza-ring').setAttribute('stroke', 'white');
+      b.querySelector('.pizza-slice').setAttribute('stroke', 'white');
+      b.querySelector('.pizza-slice').setAttribute('fill', 'rgba(255,255,255,0.12)');
+      var num = b.querySelector('.slice-num');
+      if (num) num.setAttribute('fill', 'white');
+    });
+    btn.classList.add('sel');
+    btn.querySelector('.pizza-ring').setAttribute('stroke', '#C8A050');
+    btn.querySelector('.pizza-slice').setAttribute('stroke', '#C8A050');
+    btn.querySelector('.pizza-slice').setAttribute('fill', 'rgba(200,160,80,0.18)');
+    var num = btn.querySelector('.slice-num');
+    if (num) num.setAttribute('fill', '#C8A050');
+  }
+
+  function toggleActive(item) {
+    document.querySelectorAll('.pizza-item').forEach(function(i) { i.classList.remove('active'); });
+    item.classList.add('active');
+  }
+
+  document.getElementById('pizzaWrap').addEventListener('click', function() {
+    var wrap = this;
+    wrap.classList.add('spin');
+    wrap.querySelector('svg').addEventListener('animationend', function() {
+      wrap.classList.remove('spin');
+    }, { once: true });
+  });
+</script>
+</body>
+</html>
