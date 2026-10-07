@@ -3,19 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Santi's Pizza — Menú</title>
+<title>Santi's Pizza - Menú</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,400&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --gold: #C8A050;
-  --orange: #E07030;
-  --cream: #F5EDDB;
-  --bg: #0f0b08;
-  --bg2: #100b06;
-}
 html, body { min-height: 100%; background: #0d0d0d; }
 body {
   display: flex;
@@ -26,7 +19,7 @@ body {
 .menu {
   width: 100%;
   max-width: 720px;
-  background: var(--bg);
+  background: #0f0b08;
   border-radius: 8px;
   border: 1.5px solid rgba(200,160,80,0.22);
   overflow: hidden;
@@ -34,12 +27,11 @@ body {
 }
 @keyframes rise {
   from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ── HEADER ── */
 .header {
-  background: var(--bg2);
+  background: #100b06;
   padding: 40px 24px 32px;
   text-align: center;
   position: relative;
@@ -55,11 +47,9 @@ body {
 .top-rule {
   width: 48px;
   height: 2px;
-  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  background: linear-gradient(to right, transparent, #C8A050, transparent);
   margin: 0 auto 28px;
 }
-
-/* Pizza flotante */
 .pizza-wrap {
   margin: 0 auto 24px;
   width: 140px;
@@ -74,24 +64,23 @@ body {
   display: block;
 }
 @keyframes floatPizza {
-  0%,100% { transform: translateY(0) rotate(-3deg); }
-  50%      { transform: translateY(-12px) rotate(3deg); }
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
 }
 .pizza-wrap.spin svg {
   animation: spinonce 0.65s cubic-bezier(.36,.07,.19,.97) forwards;
 }
 @keyframes spinonce {
-  0%   { transform: rotate(0deg) scale(1); }
-  40%  { transform: rotate(200deg) scale(1.14); }
+  0% { transform: rotate(0deg) scale(1); }
+  40% { transform: rotate(200deg) scale(1.14); }
   100% { transform: rotate(360deg) scale(1); }
 }
 
-/* Nombre flotante con CSS puro */
 .brand-sub {
   font-family: 'Oswald', sans-serif;
   font-size: 10px;
   letter-spacing: 8px;
-  color: var(--gold);
+  color: #C8A050;
   text-transform: uppercase;
   opacity: 0.7;
   margin-bottom: 10px;
@@ -102,7 +91,7 @@ body {
   font-weight: 700;
   font-size: 72px;
   line-height: 0.9;
-  color: var(--cream);
+  color: #F5EDDB;
   letter-spacing: -1px;
   text-shadow: 0 0 40px rgba(200,160,80,0.2), 0 4px 0 rgba(160,40,10,0.55);
   display: block;
@@ -111,13 +100,13 @@ body {
 .brand-name em {
   font-style: italic;
   font-weight: 400;
-  color: var(--orange);
+  color: #E07030;
   display: block;
   animation: floatText 5s ease-in-out infinite 0.3s;
 }
 @keyframes floatText {
-  0%,100% { transform: translateY(0); }
-  50%      { transform: translateY(-6px); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 .ornament {
@@ -130,17 +119,19 @@ body {
   z-index: 1;
 }
 .orn-line {
-  flex: 1; max-width: 120px; height: 1px;
-  background: linear-gradient(to right, transparent, var(--gold));
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #C8A050);
 }
-.orn-line.r { background: linear-gradient(to left, transparent, var(--gold)); }
+.orn-line.r { background: linear-gradient(to left, transparent, #C8A050); }
 .orn-diamond {
-  width: 6px; height: 6px;
-  background: var(--gold);
+  width: 6px;
+  height: 6px;
+  background: #C8A050;
   transform: rotate(45deg);
 }
 
-/* ── SIZES ── */
 .sizes-section {
   background: #111;
   padding: 28px 16px 32px;
@@ -169,20 +160,15 @@ body {
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
   transition: transform 0.2s ease;
   user-select: none;
 }
 .size-btn:active { transform: scale(0.93); }
-
-/* Ícono SVG */
 .size-icon { transition: filter 0.2s; }
-.size-btn.sel .size-icon {
-  filter: drop-shadow(0 0 8px rgba(200,160,80,0.6));
-}
-.size-btn.sel .size-icon .pizza-ring { stroke: var(--gold); }
-.size-btn.sel .size-icon .pizza-slice { stroke: var(--gold); fill: rgba(200,160,80,0.15); }
-.size-btn.sel .size-icon .slice-num { fill: var(--gold); }
+.size-btn.sel .size-icon { filter: drop-shadow(0 0 8px rgba(200,160,80,0.6)); }
+.size-btn.sel .pizza-ring { stroke: #C8A050; }
+.size-btn.sel .pizza-slice { stroke: #C8A050; fill: rgba(200,160,80,0.18); }
+.size-btn.sel .slice-num { fill: #C8A050; }
 
 .size-label {
   font-family: 'Oswald', sans-serif;
@@ -202,13 +188,12 @@ body {
   border-radius: 999px;
 }
 .size-btn.sel .size-price-pill {
-  background: var(--gold);
+  background: #C8A050;
   color: #111;
 }
 
-/* ── SECTION HEADER ── */
 .section-header {
-  background: var(--gold);
+  background: #C8A050;
   padding: 10px 0;
   text-align: center;
 }
@@ -221,7 +206,6 @@ body {
   font-weight: 700;
 }
 
-/* ── PIZZA GRID ── */
 .pizzas-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -241,15 +225,16 @@ body {
   position: relative;
   overflow: hidden;
   transition: background 0.2s;
-  -webkit-tap-highlight-color: transparent;
 }
 .pizza-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.04); }
 .pizza-item::after {
   content: '';
   position: absolute;
-  left: 0; top: 0;
-  width: 3px; height: 100%;
-  background: var(--orange);
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: #E07030;
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform 0.2s ease;
@@ -261,7 +246,7 @@ body {
   font-size: 17px;
   font-weight: 700;
   letter-spacing: 2px;
-  color: var(--cream);
+  color: #F5EDDB;
   text-transform: uppercase;
   margin-bottom: 5px;
   display: flex;
@@ -270,8 +255,9 @@ body {
 }
 .pizza-name::before {
   content: '';
-  width: 18px; height: 2px;
-  background: var(--orange);
+  width: 18px;
+  height: 2px;
+  background: #E07030;
   flex-shrink: 0;
   border-radius: 2px;
   transition: width 0.2s;
@@ -282,13 +268,12 @@ body {
   font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: #C8A050;
   opacity: 0.72;
   padding-left: 28px;
   line-height: 1.6;
 }
 
-/* ── FOOTER ── */
 .menu-footer {
   padding: 20px 40px 28px;
   display: flex;
@@ -298,14 +283,13 @@ body {
   border-top: 1px solid rgba(200,160,80,0.12);
 }
 .foot-line { flex: 1; max-width: 90px; height: 1px; background: rgba(200,160,80,0.2); }
-.foot-dot { width: 5px; height: 5px; background: var(--orange); border-radius: 50%; opacity: 0.55; }
+.foot-dot { width: 5px; height: 5px; background: #E07030; border-radius: 50%; opacity: 0.55; }
 .foot-icon { font-size: 20px; opacity: 0.55; animation: floatPizza 3s ease-in-out infinite; }
 </style>
 </head>
 <body>
 <div class="menu">
 
-  <!-- HEADER -->
   <div class="header">
     <div class="top-rule"></div>
     <div class="pizza-wrap" id="pizzaWrap">
@@ -345,12 +329,10 @@ body {
     </div>
   </div>
 
-  <!-- TAMAÑOS -->
   <div class="sizes-section">
     <div class="sizes-title">Elige el tamaño de tu preferencia</div>
     <div class="sizes-row">
 
-      <!-- Personal: solo círculo + triángulo, sin número -->
       <div class="size-btn" onclick="selectSize(this)">
         <div class="size-icon">
           <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -362,7 +344,6 @@ body {
         <div class="size-price-pill">$10.000</div>
       </div>
 
-      <!-- Mediana: 6 -->
       <div class="size-btn" onclick="selectSize(this)">
         <div class="size-icon">
           <svg width="74" height="74" viewBox="0 0 74 74" xmlns="http://www.w3.org/2000/svg">
@@ -375,20 +356,18 @@ body {
         <div class="size-price-pill">$22.000</div>
       </div>
 
-      <!-- Grande: 8 (preseleccionado) -->
       <div class="size-btn sel" onclick="selectSize(this)">
         <div class="size-icon">
           <svg width="86" height="86" viewBox="0 0 86 86" xmlns="http://www.w3.org/2000/svg">
-            <circle class="pizza-ring" cx="43" cy="43" r="37" fill="none" stroke="#C8A050" stroke-width="2.5"/>
-            <polygon class="pizza-slice" points="43,43 27,12 59,12" fill="rgba(200,160,80,0.18)" stroke="#C8A050" stroke-width="2" stroke-linejoin="round"/>
-            <text class="slice-num" x="43" y="28" text-anchor="middle" font-family="Oswald,sans-serif" font-size="13" font-weight="700" fill="#C8A050">8</text>
+            <circle class="pizza-ring" cx="43" cy="43" r="37" fill="none" stroke="white" stroke-width="2.5"/>
+            <polygon class="pizza-slice" points="43,43 27,12 59,12" fill="rgba(255,255,255,0.12)" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+            <text class="slice-num" x="43" y="28" text-anchor="middle" font-family="Oswald,sans-serif" font-size="13" font-weight="700" fill="white">8</text>
           </svg>
         </div>
         <div class="size-label">Grande</div>
         <div class="size-price-pill">$28.000</div>
       </div>
 
-      <!-- Familiar: 10 -->
       <div class="size-btn" onclick="selectSize(this)">
         <div class="size-icon">
           <svg width="98" height="98" viewBox="0 0 98 98" xmlns="http://www.w3.org/2000/svg">
@@ -401,7 +380,6 @@ body {
         <div class="size-price-pill">$35.000</div>
       </div>
 
-      <!-- Jumbo: 12 -->
       <div class="size-btn" onclick="selectSize(this)">
         <div class="size-icon">
           <svg width="110" height="110" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
@@ -417,7 +395,6 @@ body {
     </div>
   </div>
 
-  <!-- ESPECIALIDADES -->
   <div class="section-header"><span>Especialidades</span></div>
 
   <div class="pizzas-grid">
@@ -493,35 +470,29 @@ body {
 </div>
 
 <script>
-  function selectSize(btn) {
-    document.querySelectorAll('.size-btn').forEach(function(b) {
-      b.classList.remove('sel');
-      b.querySelector('.pizza-ring').setAttribute('stroke', 'white');
-      b.querySelector('.pizza-slice').setAttribute('stroke', 'white');
-      b.querySelector('.pizza-slice').setAttribute('fill', 'rgba(255,255,255,0.12)');
-      var num = b.querySelector('.slice-num');
-      if (num) num.setAttribute('fill', 'white');
-    });
-    btn.classList.add('sel');
-    btn.querySelector('.pizza-ring').setAttribute('stroke', '#C8A050');
-    btn.querySelector('.pizza-slice').setAttribute('stroke', '#C8A050');
-    btn.querySelector('.pizza-slice').setAttribute('fill', 'rgba(200,160,80,0.18)');
-    var num = btn.querySelector('.slice-num');
-    if (num) num.setAttribute('fill', '#C8A050');
+function selectSize(btn) {
+  var botones = document.querySelectorAll('.size-btn');
+  for (var i = 0; i < botones.length; i++) {
+    botones[i].classList.remove('sel');
   }
+  btn.classList.add('sel');
+}
 
-  function toggleActive(item) {
-    document.querySelectorAll('.pizza-item').forEach(function(i) { i.classList.remove('active'); });
-    item.classList.add('active');
+function toggleActive(item) {
+  var items = document.querySelectorAll('.pizza-item');
+  for (var i = 0; i < items.length; i++) {
+    items[i].classList.remove('active');
   }
+  item.classList.add('active');
+}
 
-  document.getElementById('pizzaWrap').addEventListener('click', function() {
-    var wrap = this;
-    wrap.classList.add('spin');
-    wrap.querySelector('svg').addEventListener('animationend', function() {
-      wrap.classList.remove('spin');
-    }, { once: true });
-  });
+var pizza = document.getElementById('pizzaWrap');
+pizza.addEventListener('click', function() {
+  pizza.classList.add('spin');
+  setTimeout(function() {
+    pizza.classList.remove('spin');
+  }, 650);
+});
 </script>
 </body>
 </html>
